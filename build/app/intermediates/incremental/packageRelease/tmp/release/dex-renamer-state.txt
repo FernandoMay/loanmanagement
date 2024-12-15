@@ -1,4 +1,4 @@
-#Sat Dec 14 20:39:55 CST 2024
+#Sat Dec 14 21:24:05 CST 2024
 base.0=D\:\\pj\\loanmanagement\\build\\app\\intermediates\\dex\\release\\minifyReleaseWithR8\\classes.dex
 path.0=classes.dex
 renamed.0=classes.dex
