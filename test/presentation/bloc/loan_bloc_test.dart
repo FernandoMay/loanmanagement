@@ -59,13 +59,14 @@ void main() {
     'emits [LoanLoading, LoanLoaded] when UpdateLoanStatus is added',
     build: () {
       when(mockUpdateLoanStatus.execute('1', true))
-          .thenAnswer((_) async => null);
+          .thenAnswer((_) async {});
       when(mockGetLoans.execute())
           .thenAnswer((_) async => testLoans);
       return bloc;
     },
     act: (bloc) => bloc.add(UpdateLoanStatusEvent('1', true)),
     expect: () => [
+      LoanLoading(),
       LoanLoaded(testLoans),
     ],
   );
