@@ -1,0 +1,1 @@
+ D:\\pj\\loanmanagement\\.dart_tool\\flutter_build\\d6ad76ff7186e9bb261c4c0e335f0b59\\native_assets.yaml: 
