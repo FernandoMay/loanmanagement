@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../../domain/entities/loan.dart';
+import 'loan_status_chip.dart';
 
 class LoanCard extends StatelessWidget {
   final Loan loan;
@@ -41,13 +42,30 @@ class LoanCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  loan.type,
-                  style: Theme.of(context).textTheme.titleLarge,
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        loan.type,
+                        style: Theme.of(context).textTheme.titleLarge,
+                      ),
+                      const SizedBox(height: 4),
+                      LoanStatusChip(isPaid: loan.isPaid),
+                    ],
+                  ),
                 ),
-                Checkbox(
-                  value: loan.isPaid,
-                  onChanged: (value) => onStatusChanged(value ?? false),
+                Transform.scale(
+                  scale: 1.2,
+                  child: Checkbox(
+                    value: loan.isPaid,
+                    activeColor: Colors.green,
+                    onChanged: (bool? value) {
+                      if (value != null) {
+                        onStatusChanged(value);
+                      }
+                    },
+                  ),
                 ),
               ],
             ),

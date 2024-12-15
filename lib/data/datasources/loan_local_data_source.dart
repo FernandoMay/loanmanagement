@@ -14,6 +14,7 @@ class LoanLocalDataSourceImpl implements LoanLocalDataSource {
       amount: 1000.0,
       weeklyAmount: 100.0,
       paymentDate: DateTime.now(),
+      isPaid: false,
     ),
     LoanModel(
       id: '2',
@@ -21,6 +22,7 @@ class LoanLocalDataSourceImpl implements LoanLocalDataSource {
       amount: 5000.0,
       weeklyAmount: 500.0,
       paymentDate: DateTime.now().add(const Duration(days: 1)),
+      isPaid: false,
     ),
   ];
 
@@ -33,14 +35,7 @@ class LoanLocalDataSourceImpl implements LoanLocalDataSource {
   Future<void> updateLoanStatus(String loanId, bool isPaid) async {
     final index = _loans.indexWhere((loan) => loan.id == loanId);
     if (index != -1) {
-      _loans[index] = LoanModel(
-        id: _loans[index].id,
-        type: _loans[index].type,
-        amount: _loans[index].amount,
-        weeklyAmount: _loans[index].weeklyAmount,
-        paymentDate: _loans[index].paymentDate,
-        isPaid: isPaid,
-      );
+      _loans[index] = _loans[index].copyWithModel(isPaid: isPaid);
     }
   }
 }

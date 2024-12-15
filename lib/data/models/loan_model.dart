@@ -28,6 +28,17 @@ class LoanModel extends Loan {
     );
   }
 
+  factory LoanModel.fromLoan(Loan loan) {
+    return LoanModel(
+      id: loan.id,
+      type: loan.type,
+      amount: loan.amount,
+      weeklyAmount: loan.weeklyAmount,
+      paymentDate: loan.paymentDate,
+      isPaid: loan.isPaid,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     return {
       'id': id,
@@ -37,5 +48,23 @@ class LoanModel extends Loan {
       'paymentDate': paymentDate.toIso8601String(),
       'isPaid': isPaid,
     };
+  }
+
+  LoanModel copyWithModel({
+    String? id,
+    String? type,
+    double? amount,
+    double? weeklyAmount,
+    DateTime? paymentDate,
+    bool? isPaid,
+  }) {
+    return LoanModel(
+      id: id ?? this.id,
+      type: type ?? this.type,
+      amount: amount ?? this.amount,
+      weeklyAmount: weeklyAmount ?? this.weeklyAmount,
+      paymentDate: paymentDate ?? this.paymentDate,
+      isPaid: isPaid ?? this.isPaid,
+    );
   }
 }

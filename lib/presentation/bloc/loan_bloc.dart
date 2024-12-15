@@ -79,8 +79,7 @@ class LoanBloc extends Bloc<LoanEvent, LoanState> {
   ) async {
     try {
       await updateLoanStatus.execute(event.loanId, event.isPaid);
-      final loans = await getLoans.execute();
-      emit(LoanLoaded(loans));
+      add(LoadLoans()); // Reload loans after updating status
     } catch (e) {
       emit(LoanError(e.toString()));
     }
